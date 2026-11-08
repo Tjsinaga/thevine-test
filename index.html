@@ -291,6 +291,29 @@
     </div>
   </footer>
 
+  <audio id="background-audio" loop preload="none">
+    <source src="images/audio/WhatsApp%20Video%202026-10-30%20at%2013.57.21.mp3" type="audio/mpeg">
+  </audio>
+  <button
+    class="sound-toggle"
+    id="sound-toggle"
+    type="button"
+    aria-label="Turn background sound on"
+    aria-pressed="false"
+    aria-describedby="sound-status"
+  >
+    <svg class="sound-toggle__icon sound-toggle__icon--off" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
+      <path d="m17 9 4 6m0-6-4 6"></path>
+    </svg>
+    <svg class="sound-toggle__icon sound-toggle__icon--on" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M11 5 6 9H3v6h3l5 4V5Z"></path>
+      <path d="M15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13"></path>
+    </svg>
+    <span class="sound-toggle__label">Sound off</span>
+  </button>
+  <span class="visually-hidden" id="sound-status" role="status" aria-live="polite"></span>
+
   <script src="site.js"></script>
 </body>
 </html>

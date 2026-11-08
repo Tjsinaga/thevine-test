@@ -2,6 +2,61 @@ const header = document.querySelector('#site-header');
 const toggle = document.querySelector('#menu-toggle');
 const nav = document.querySelector('#main-nav');
 
+const backgroundAudio = document.querySelector('#background-audio');
+const soundToggle = document.querySelector('#sound-toggle');
+const soundLabel = soundToggle?.querySelector('.sound-toggle__label');
+const soundStatus = document.querySelector('#sound-status');
+
+if (backgroundAudio instanceof HTMLAudioElement && soundToggle && soundLabel && soundStatus) {
+  backgroundAudio.volume = 0.35;
+  let playRequested = false;
+
+  const updateSoundToggle = isPlaying => {
+    soundToggle.setAttribute('aria-pressed', String(isPlaying));
+    soundToggle.setAttribute(
+      'aria-label',
+      isPlaying ? 'Turn background sound off' : 'Turn background sound on',
+    );
+    soundLabel.textContent = isPlaying ? 'Sound on' : 'Sound off';
+  };
+
+  soundToggle.addEventListener('click', async () => {
+    if (!backgroundAudio.paused || playRequested) {
+      playRequested = false;
+      updateSoundToggle(false);
+      backgroundAudio.pause();
+      soundStatus.textContent = '';
+      return;
+    }
+
+    playRequested = true;
+    updateSoundToggle(true);
+    soundStatus.textContent = '';
+
+    try {
+      await backgroundAudio.play();
+    } catch (error) {
+      if (!playRequested) {
+        return;
+      }
+
+      playRequested = false;
+      updateSoundToggle(false);
+      soundStatus.textContent = 'Background sound could not be played. Please try again.';
+      console.error('Background sound playback failed.', error);
+    }
+  });
+
+  backgroundAudio.addEventListener('play', () => {
+    playRequested = true;
+    updateSoundToggle(true);
+  });
+  backgroundAudio.addEventListener('pause', () => {
+    playRequested = false;
+    updateSoundToggle(false);
+  });
+}
+
 if (header && toggle && nav) {
   const isMenuOpen = () => toggle.getAttribute('aria-expanded') === 'true';
 

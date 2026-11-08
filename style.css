@@ -232,6 +232,72 @@ h1 em,
   font-size: 0.86rem;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.sound-toggle {
+  position: fixed;
+  z-index: 110;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  color: var(--color-white);
+  background: rgba(23, 61, 56, 0.94);
+  box-shadow: 0 8px 26px rgba(16, 47, 42, 0.24);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition:
+    background-color var(--motion-fast),
+    box-shadow var(--motion-fast),
+    transform var(--motion-fast);
+}
+
+.sound-toggle:hover {
+  background: var(--color-pine-deep);
+  box-shadow: 0 12px 30px rgba(16, 47, 42, 0.3);
+  transform: translateY(-2px);
+}
+
+.sound-toggle__icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.sound-toggle__icon--on,
+.sound-toggle[aria-pressed="true"] .sound-toggle__icon--off {
+  display: none;
+}
+
+.sound-toggle[aria-pressed="true"] .sound-toggle__icon--on {
+  display: block;
+}
+
+.sound-toggle__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
 /* Shared fixed header and responsive navigation */
 .site-header {
   position: fixed;
