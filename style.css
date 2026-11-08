@@ -379,6 +379,32 @@ h1 em,
   background: var(--color-pine);
 }
 
+.hero.hero--video {
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+}
+
+.hero--video .hero__media {
+  z-index: 0;
+  filter: saturate(0.9) contrast(1.03);
+  transform: none;
+}
+
+.hero--video::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(13, 37, 33, 0.48) 0%, rgba(23, 61, 56, 0.08) 34%, rgba(13, 37, 33, 0.32) 100%),
+    linear-gradient(0deg, rgba(23, 61, 56, 0.12), rgba(23, 61, 56, 0.12));
+  content: "";
+  pointer-events: none;
+}
+
+.hero--image .hero__background {
+  opacity: 1;
+}
+
 .hero__background,
 .hero__overlay,
 .hero__media {
@@ -1535,6 +1561,11 @@ h1 em,
   .hero {
     min-height: 720px;
     min-height: max(660px, 92svh);
+  }
+
+  .hero.hero--video {
+    aspect-ratio: auto;
+    min-height: 62svh;
   }
 
   .hero__content {
