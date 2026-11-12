@@ -117,10 +117,17 @@ if (header && toggle && nav) {
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const heroVideo = document.querySelector('.hero--video .hero__media');
+
+if (heroVideo) {
+  heroVideo.play().catch(error => {
+    console.error('Unable to start homepage hero video playback.', error);
+  });
+}
 
 if (!reducedMotion && 'IntersectionObserver' in window) {
   const revealTargets = document.querySelectorAll(
-    '.story-card, .destination-card, .health-concern-card, .team-principle, .team-profile-card, .comfort-list li, .booking-step, .faq-list details, .philosophy-image-wrap, .director-portrait, .setting-copy',
+    '.story-card, .destination-card, .health-concern-card, .contact-concept, .contact-intro__visual, .contact-sanctuary__visual, .contact-inquiry__panel, .team-principle, .team-profile-card, .comfort-list li, .booking-step, .faq-list details, .philosophy-image-wrap, .director-portrait, .setting-copy',
   );
 
   if (revealTargets.length > 0) {
@@ -143,4 +150,68 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
 
     document.documentElement.classList.add('motion-ready');
   }
+}
+
+const contactFaq = document.querySelector('[data-contact-faq]');
+
+if (contactFaq) {
+  const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  contactFaq.setAttribute('data-enhanced', '');
+
+  contactFaq.querySelectorAll('.contact-faq__item').forEach(item => {
+    const summary = item.querySelector('summary');
+    const answer = item.querySelector('.contact-faq__answer');
+
+    if (!summary || !answer) {
+      return;
+    }
+
+    answer.style.height = item.open ? 'auto' : '0px';
+
+    summary.addEventListener('click', event => {
+      event.preventDefault();
+
+      if (item.dataset.animating === 'true') {
+        return;
+      }
+
+      if (reducedMotionPreference.matches) {
+        item.open = !item.open;
+        answer.style.height = item.open ? 'auto' : '0px';
+        return;
+      }
+
+      item.dataset.animating = 'true';
+      const opening = !item.open;
+
+      if (opening) {
+        item.open = true;
+        answer.style.height = '0px';
+        answer.getBoundingClientRect();
+        answer.style.height = `${answer.scrollHeight}px`;
+      } else {
+        answer.style.height = `${answer.scrollHeight}px`;
+        answer.getBoundingClientRect();
+        answer.style.height = '0px';
+      }
+
+      answer.addEventListener(
+        'transitionend',
+        transitionEvent => {
+          if (transitionEvent.propertyName !== 'height') {
+            return;
+          }
+
+          if (!opening) {
+            item.open = false;
+          } else {
+            answer.style.height = 'auto';
+          }
+
+          delete item.dataset.animating;
+        },
+        { once: true },
+      );
+    });
+  });
 }
