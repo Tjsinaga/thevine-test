@@ -120,7 +120,7 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matc
 
 if (!reducedMotion && 'IntersectionObserver' in window) {
   const revealTargets = document.querySelectorAll(
-    '.story-card, .team-principle, .team-profile-card, .comfort-list li, .booking-step, .faq-list details, .philosophy-image-wrap, .director-portrait, .setting-copy',
+    '.story-card, .destination-card, .health-concern-card, .team-principle, .team-profile-card, .comfort-list li, .booking-step, .faq-list details, .philosophy-image-wrap, .director-portrait, .setting-copy',
   );
 
   if (revealTargets.length > 0) {
