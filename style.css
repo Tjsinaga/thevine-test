@@ -544,10 +544,10 @@ h1 em,
 
 .philosophy-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-areas: "copy image";
-  align-items: stretch;
-  gap: clamp(36px, 6vw, 80px);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
 }
 
 .philosophy-image-wrap {
@@ -555,7 +555,8 @@ h1 em,
   grid-area: image;
   justify-self: end;
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
+  aspect-ratio: 1.2;
   min-width: 0;
   padding: 9px;
   border: 1px solid rgba(255, 255, 255, 0.76);
@@ -1447,6 +1448,17 @@ h1 em,
   background-position: center 56%;
 }
 
+.page-heading--healing-stories {
+  background-image: url("images/optimized/Wellness_Manca_Resort_4.jpg");
+  background-position: center 54%;
+}
+
+.page-heading--story-detail {
+  min-height: clamp(370px, 42vw, 540px);
+  background-image: url("images/optimized/Wellness_Manca_Resort_5.jpg");
+  background-position: center 48%;
+}
+
 .page-heading h1 {
   max-width: 930px;
   color: var(--color-white);
@@ -1464,6 +1476,19 @@ h1 em,
 
 .page-heading .eyebrow {
   color: #d1e2d5;
+}
+
+.story-detail-byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9rem;
+}
+
+.story-detail-byline strong {
+  color: var(--color-white);
 }
 
 .page-heading .button--outline {
@@ -1484,6 +1509,198 @@ h1 em,
 
 .page-section--tint {
   background: #f2f6f2;
+}
+
+.healing-stories-section > .container > .eyebrow {
+  margin-bottom: 24px;
+}
+
+.healing-story-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  overflow: hidden;
+  border: 1px solid rgba(220, 229, 222, 0.9);
+  border-radius: 26px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+}
+
+.healing-story-card__image-link {
+  display: block;
+  min-height: 100%;
+  overflow: hidden;
+  background: var(--color-sage-light);
+}
+
+.healing-story-card__image-link img {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.healing-story-card__image-link:hover img {
+  transform: scale(1.035);
+}
+
+.healing-story-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(30px, 5vw, 64px);
+}
+
+.healing-story-card__eyebrow {
+  margin: 0 0 16px;
+  color: #527a61;
+  font-size: 0.69rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.healing-story-card h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+}
+
+.healing-story-card h2 a {
+  color: inherit;
+}
+
+.healing-story-card h2 a:hover {
+  color: #527a61;
+}
+
+.healing-story-card__byline,
+.healing-story-card__participant {
+  margin: 18px 0 0;
+  color: var(--color-body);
+  font-size: 0.9rem;
+}
+
+.healing-story-card__byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.healing-story-card__byline strong {
+  color: var(--color-ink);
+}
+
+.healing-story-card__participant {
+  margin-top: 4px;
+  font-size: 0.82rem;
+}
+
+.healing-story-card__excerpt {
+  max-width: 54ch;
+  margin: 22px 0 0;
+  color: var(--color-body);
+  line-height: 1.85;
+}
+
+.healing-story-card .button {
+  margin-top: 28px;
+}
+
+.healing-stories-note {
+  max-width: 760px;
+  margin: 22px auto 0;
+  color: var(--color-body);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.healing-article-section {
+  background: var(--color-cream);
+}
+
+.healing-article {
+  max-width: 1060px;
+}
+
+.healing-article__image {
+  margin: 0 auto 54px;
+}
+
+.healing-article__image img {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  aspect-ratio: 1.9;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.healing-article__image figcaption {
+  margin-top: 12px;
+  color: #718078;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.healing-article__body {
+  max-width: 740px;
+  margin-inline: auto;
+  color: var(--color-ink);
+  font-size: 1.04rem;
+  line-height: 1.9;
+}
+
+.healing-article__body > p {
+  margin: 0 0 24px;
+}
+
+.healing-article__quote {
+  margin: 40px 0;
+  padding: 28px clamp(22px, 5vw, 48px);
+  border-left: 3px solid #a45b62;
+  border-radius: 0 16px 16px 0;
+  background: #f5e9e6;
+  color: var(--color-pine);
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.3vw, 2.5rem);
+  line-height: 1.35;
+}
+
+.healing-article__quote p {
+  margin: 0;
+}
+
+.healing-article__signoff {
+  margin-bottom: 8px !important;
+}
+
+.healing-article__author {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 0.9rem;
+}
+
+.healing-article__author strong {
+  color: var(--color-ink);
+}
+
+.healing-article__author span {
+  color: var(--color-body);
+}
+
+.healing-article__disclaimer {
+  margin-top: 34px !important;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border);
+  color: #718078;
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.healing-article__back {
+  margin-top: 6px;
 }
 
 .page-section h2,
@@ -2069,6 +2286,20 @@ h1 em,
     gap: 30px;
   }
 
+  .healing-story-card {
+    grid-template-columns: 1fr;
+  }
+
+  .healing-story-card__image-link img {
+    min-height: 0;
+    aspect-ratio: 1.85;
+  }
+
+  .philosophy-image-wrap {
+    justify-self: center;
+    aspect-ratio: 1.6;
+  }
+
   .director-layout {
     gap: 34px;
   }
@@ -2126,12 +2357,38 @@ h1 em,
   }
 
   .philosophy-copy {
-    padding: 28px;
+    padding: clamp(22px, 5.5vw, 30px);
+  }
+
+  .healing-story-card {
+    grid-template-columns: 1fr;
+  }
+
+  .healing-story-card__image-link img {
+    min-height: 0;
+    aspect-ratio: 1.65;
+  }
+
+  .healing-story-card__content {
+    padding: clamp(26px, 7vw, 38px);
+  }
+
+  .healing-article__image {
+    margin-bottom: 36px;
+  }
+
+  .healing-article__image img {
+    aspect-ratio: 1.35;
+    border-radius: 18px;
+  }
+
+  .healing-article__body {
+    font-size: 1rem;
   }
 
   .philosophy-image {
     flex: none;
-    height: 280px;
+    height: 100%;
   }
 
   .section-heading {
@@ -2307,6 +2564,15 @@ h1 em,
   .philosophy-copy h2,
   .simple-section h2 {
     font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  .story-detail-byline {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .healing-article__quote {
+    margin-block: 32px;
   }
 
   .features {
